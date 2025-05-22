@@ -33,7 +33,8 @@ with col1:
         with open(pdf_path, "rb") as p:
             base64_pdf = base64.b64encode(p.read()).decode("utf-8")
         pdf_display = f'<iframe src="data:application/pdf;base64,{base64_pdf}" width="100%" height="600px"></iframe>'
-        st.markdown(pdf_display, unsafe_allow_html=True)
+        # st.markdown(pdf_display, unsafe_allow_html=True)
+        st.components.v1.html(pdf_viewer, height=600)
     else:
         st.warning("Selected chapter is not a valid PDF file.")
 
