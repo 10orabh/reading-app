@@ -5,7 +5,7 @@ from groq import Groq
 import base64
 import fitz
 # Load environment variables
-load_dotenv()
+# load_dotenv()
 
 # Streamlit UI
 st.set_page_config(page_title="Pdf Tester", page_icon=":books:", layout="wide")
