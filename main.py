@@ -173,15 +173,15 @@ with ai_column:
     def clear_text():
         st.session_state.user_query = st.session_state.inpt
         st.session_state.inpt = ""  # Clear the input field
-
+    
 
     user_query = st.text_input("what's your question",key='inpt',on_change=clear_text,placeholder="Type your question here...")
 
     prompt2 =f"""ROLE = YOU ARE A EXPERT TUTOR WITH EXTENSIVE EXPERIENCE IN TEACHING AND ASKING THOUGHT-PROVOKING QUESTIONS TO STUDENTS.
     TASK = YOU HAVE THE FOLLOWING TASKS:
-        1.READ THE GIVEN {st.session_state.user_query} AND give user sum experiment TO user  IN A LANGUAGE THAT IS EASY TO UNDERSTAND, JUST LIKE A DAILY CONVERSATION
-        2.explain the answer behind the experiment 
-        3.IF THE USER HAS ANY QUERIES, RESOLVE THEM AND THEN ASK THE NEXT QUESTION.
+        1.READ THE GIVEN {st.session_state.user_query} AND explain it with experiment.
+        
+        
            
         
     ADDITIONAL GUIDELINES:
