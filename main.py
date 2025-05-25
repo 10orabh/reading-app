@@ -169,12 +169,12 @@ st.markdown(
 with ai_column:
     openButton = st.button("Open",key='open_button')
     if 'older_query' not in st.session_state:
-        st.session_state.older_query = ""  
+        st.session_state.older_query = [] 
     if 'user_query' not in st.session_state:
         st.session_state.user_query = ""  # Initialize the session state variable
     def clear_text():
         st.session_state.user_query = st.session_state.inpt
-        st.session_state.older_query += st.session_state.inpt
+        st.session_state.older_query.append(st.session_state.inpt)
         st.session_state.inpt = ""  # Clear the input field
     
 
@@ -182,7 +182,7 @@ with ai_column:
 
     prompt2 =f"""ROLE = YOU ARE A EXPERT TUTOR WITH EXTENSIVE EXPERIENCE IN TEACHING AND ASKING THOUGHT-PROVOKING QUESTIONS TO STUDENTS.
     TASK = YOU HAVE THE FOLLOWING TASKS:
-        older chat = { st.session_state.older_query}
+        older chat = { st.session_state.older_query[-1]}
         1.if the older chat is not empty you answer so you first check if {st.session_state.user_query} is correct respond to it
         2.else READ THE GIVEN {st.session_state.user_query} AND explain it with experiment.
         ADDITIONAL GUIDELINES:
