@@ -168,10 +168,13 @@ st.markdown(
    
 with ai_column:
     openButton = st.button("Open",key='open_button')
+    if 'older_query' not in st.session_state:
+        st.session_state.older_query = ""  
     if 'user_query' not in st.session_state:
         st.session_state.user_query = ""  # Initialize the session state variable
     def clear_text():
         st.session_state.user_query = st.session_state.inpt
+         st.session_state.older_query += st.session_state.inpt
         st.session_state.inpt = ""  # Clear the input field
     
 
@@ -179,7 +182,8 @@ with ai_column:
 
     prompt2 =f"""ROLE = YOU ARE A EXPERT TUTOR WITH EXTENSIVE EXPERIENCE IN TEACHING AND ASKING THOUGHT-PROVOKING QUESTIONS TO STUDENTS.
     TASK = YOU HAVE THE FOLLOWING TASKS:
-        1.READ THE GIVEN {st.session_state.user_query} AND explain it with experiment.
+        1.if you have older chat context which is { st.session_state.older_query} and the user query is according to older query than you also taken that context and answer it
+        2.READ THE GIVEN {st.session_state.user_query} AND explain it with experiment.
         
         
            
