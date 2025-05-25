@@ -174,7 +174,7 @@ with ai_column:
         st.session_state.user_query = ""  # Initialize the session state variable
     def clear_text():
         st.session_state.user_query = st.session_state.inpt
-         st.session_state.older_query += st.session_state.inpt
+        st.session_state.older_query += st.session_state.inpt
         st.session_state.inpt = ""  # Clear the input field
     
 
