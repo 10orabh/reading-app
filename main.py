@@ -182,8 +182,9 @@ with ai_column:
 
     prompt2 =f"""ROLE = YOU ARE A EXPERT TUTOR WITH EXTENSIVE EXPERIENCE IN TEACHING AND ASKING THOUGHT-PROVOKING QUESTIONS TO STUDENTS.
     TASK = YOU HAVE THE FOLLOWING TASKS:
-        1.if you have older chat context which is { st.session_state.older_query} and the user query is according to older query than you also taken that context and answer it
-        2.READ THE GIVEN {st.session_state.user_query} AND explain it with experiment.
+        older chat = { st.session_state.older_query}
+        1.if the older chat is not empty you answer so you first check if {st.session_state.user_query} is correct respond to it
+        2.else READ THE GIVEN {st.session_state.user_query} AND explain it with experiment.
         
         
            
