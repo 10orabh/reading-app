@@ -139,7 +139,16 @@ with pdf_column:
 if unit:
     # with col2:
     doc = fitz.open(pdf_path)
-    fulltext =[]
+    fulltext = ''
+    page = doc[st.session_state.page_num]
+    blocks = page.get_text("dict")["blocks"]
+    for block in blocks:
+        if block["type"] == 0:  # type 0 = text block
+            block_text = ""
+            for line in block["lines"]:
+                for span in line["spans"]:
+                    block_text += span["text"] + " "
+    fulltext = block_text
 # sticky chatbot banana
 st.markdown(
     """
@@ -181,7 +190,7 @@ with ai_column:
     user_query = st.text_input("what's your question",key='inpt',on_change=clear_text,placeholder="Type your question here...")
 
     prompt2 =f"""ROLE = YOU ARE A EXPERT TUTOR WITH EXTENSIVE EXPERIENCE IN TEACHING AND ASKING THOUGHT-PROVOKING QUESTIONS TO STUDENTS.
-    TASK = YOU HAVE THE FOLLOWING TASKS:
+    TASK = YOU HAVE THE FOLLOWING TASKS: get context form {fulltext}
         older chat = { st.session_state.older_query}
         1.else READ THE GIVEN {st.session_state.user_query} AND explain it with experiment.
         2.if the older chat is not empty you answer so you first check if {st.session_state.user_query} is correct respond to it 
